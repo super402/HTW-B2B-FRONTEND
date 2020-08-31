@@ -102,6 +102,10 @@ import Timeline from './Pages/Timeline';
 
 import Icons from './Icons';
 
+import Dev from './Dev/ReCahrts';
+import Timebar from './Example/Timebar'
+import SystemSummary from './Example/System/Summary'
+
 // ----------- Layout Imports ---------------
 import { DefaultNavbar } from './../layout/components/DefaultNavbar';
 import { DefaultSidebar } from './../layout/components/DefaultSidebar';
@@ -112,10 +116,15 @@ import { SidebarASidebar } from './../layout/components/SidebarASidebar';
 //------ Route Definitions --------
 // eslint-disable-next-line no-unused-vars
 export const RoutedContent = () => {
+        
     return (
         <Switch>
-            <Redirect from="/" to="/dashboards/projects" exact />
+            <Redirect from="/" to="/dashboards/analytics" exact />
             
+            <Route path="/dev" exact component={Dev} />
+            <Route path="/timebar" exact component={Timebar} />
+            <Route path="/system/summary" exact component={SystemSummary} />
+
             <Route path="/dashboards/analytics" exact component={Analytics} />
             <Route path="/dashboards/projects" exact component={ProjectsDashboard} />
             <Route path="/dashboards/system" exact component={System} />

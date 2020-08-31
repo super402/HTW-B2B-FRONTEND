@@ -12,9 +12,15 @@ import { MenuContext } from './MenuContext';
 const SidebarMenuItemLink = (props) => (
     (props.to || props.href) ? (
         props.to ? (
-            <Link to={ props.to } className={`${props.classBase}__entry__link`}>
-                { props.children }
-            </Link>
+            props.level ? (
+                <Link to={ props.to } className={classNames(`${props.classBase}__entry__link level${props.level}`)}>
+                    { props.children }
+                </Link>
+            ) : (
+                <Link to={ props.to } className={classNames(`${props.classBase}__entry__link`)}>
+                    { props.children }
+                </Link>
+            )
         ) : (
             <a
                 href={ props.href }
@@ -27,13 +33,23 @@ const SidebarMenuItemLink = (props) => (
         )
         
     ) : (
-        <a
-            href="javascript:;"
-            className={`${props.classBase}__entry__link`}
-            onClick={ () => props.onToggle() }
-        >
-            { props.children }
-        </a>
+        props.level ? (
+            <a
+                href="javascript:;"
+                className={`${props.classBase}__entry__link level${props.level}`}
+                onClick={ () => props.onToggle() }
+            >
+                { props.children }
+            </a>
+        ) : (
+            <a
+                href="javascript:;"
+                className={`${props.classBase}__entry__link`}
+                onClick={ () => props.onToggle() }
+            >
+                { props.children }
+            </a>
+        )
     )
 )
 SidebarMenuItemLink.propTypes = {
@@ -42,7 +58,8 @@ SidebarMenuItemLink.propTypes = {
     active: PropTypes.bool,
     onToggle: PropTypes.func,
     children: PropTypes.node,
-    classBase: PropTypes.string
+    classBase: PropTypes.string,
+    level: PropTypes.number
 }
 
 /**
@@ -71,6 +88,7 @@ export class SidebarMenuItem extends React.Component {
         href: PropTypes.string,
         exact: PropTypes.bool,
         noCaret: PropTypes.bool,
+        level: PropTypes.number
     }
 
     static defaultProps = {
@@ -131,6 +149,7 @@ export class SidebarMenuItem extends React.Component {
                     href={ this.props.href || null }
                     onToggle={ this.toggleNode.bind(this) }
                     classBase={ classBase }
+                    level={this.props.level || null}
                 >
                     {
                         this.props.icon && React.cloneElement(this.props.icon, {

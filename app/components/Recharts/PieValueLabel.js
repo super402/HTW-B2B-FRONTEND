@@ -17,10 +17,11 @@ export const PieValueLabel = (props) => {
             y={ y }
             textAnchor={ x > cx ? 'start' : 'end' }
             dominantBaseline="central"
-            fill={ props.color || config.pieLabel.fill }
+            fill={ color || config.pieLabel.fill }
             fontSize={ config.pieLabel.fontSize }
         >
-            {`${(percent * 100).toFixed(0)}%`}
+            {/*`${(percent * 100).toFixed(0)}%`*/}
+            {`${props.value}`}
         </text>
     );
 };
@@ -31,5 +32,6 @@ PieValueLabel.propTypes = {
     innerRadius: PropTypes.number,
     outerRadius: PropTypes.number,
     percent: PropTypes.number,
-    color: PropTypes.string
+    color: PropTypes.string,
+    value: PropTypes.number
 };
