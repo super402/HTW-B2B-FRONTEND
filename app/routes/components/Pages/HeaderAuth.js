@@ -33,7 +33,6 @@ HeaderAuth.propTypes = {
 };
 HeaderAuth.defaultProps = {
     title: "Waiting for Data...",
-    text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure voluptas aperiam odit, reiciendis dicta nihil.",
     iconClassName: "text-theme"
 };
 
